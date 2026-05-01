@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RefacMax — Piezas Originales</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --negro: #0a0a0a;
+    --rojo: #e8000d;
+    --rojo-oscuro: #b00009;
+    --gris: #1c1c1e;
+    --gris-medio: #2e2e30;
+    --gris-claro: #5c5c60;
+    --blanco: #f5f5f5;
+    --amarillo: #ffd200;
+    --texto: #d0d0d2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--negro);
+    color: var(--blanco);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--rojo);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 64px;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    color: var(--blanco);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .logo span { color: var(--rojo); }
+
+  .nav-links {
+    display: flex;
+    gap: 0.2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--texto);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--blanco);
+    background: var(--rojo);
+  }
+
+  .nav-wa {
+    background: #25d366;
+    color: #fff !important;
+    border-radius: 6px !important;
+    padding: 8px 16px !important;
+    font-weight: 700 !important;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .nav-wa:hover { background: #1da851 !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    margin-top: 64px;
+    min-height: 480px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0002 50%, #0a0a0a 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 4rem 2rem;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(232,0,13,0.04) 60px, rgba(232,0,13,0.04) 61px),
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(232,0,13,0.04) 60px, rgba(232,0,13,0.04) 61px);
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    right: -2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18rem;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .hero-content {
+    position: relative;
+    max-width: 700px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--rojo);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 2px;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+  .hero h1 em {
+    color: var(--rojo);
+    font-style: normal;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--texto);
+    max-width: 480px;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--rojo);
+    color: #fff;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover { background: var(--rojo-oscuro); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--blanco);
+    padding: 14px 32px;
+    border: 2px solid rgba(245,245,245,0.3);
+    border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-outline:hover { border-color: var(--blanco); transform: translateY(-2px); }
+
+  /* ─── CANALES ─── */
+  .canales {
+    background: var(--gris);
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    padding: 1.2rem 2rem;
+  }
+  .canales-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .canal-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--texto);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .canal-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+  .canal-icon.ml { background: #ffe600; color: #333; }
+  .canal-icon.fb { background: #1877f2; color: #fff; }
+  .canal-icon.wa { background: #25d366; color: #fff; }
+
+  /* ─── SECCIÓN CATÁLOGO ─── */
+  .seccion { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+
+  .sec-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rojo);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sec-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--rojo);
+  }
+
+  .sec-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+  }
+
+  /* Buscador */
+  .buscador {
+    background: var(--gris);
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    align-items: end;
+  }
+  .campo label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gris-claro);
+    margin-bottom: 6px;
+  }
+  .campo select, .campo input {
+    width: 100%;
+    background: var(--gris-medio);
+    color: var(--blanco);
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .campo select:focus, .campo input:focus { border-color: var(--rojo); }
+
+  .btn-buscar {
+    background: var(--rojo);
+    color: #fff;
+    border: none;
+    padding: 11px 24px;
+    border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%;
+  }
+  .btn-buscar:hover { background: var(--rojo-oscuro); }
+
+  /* Categorías */
+  .categorias {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .cat-btn {
+    padding: 6px 16px;
+    border-radius: 100px;
+    border: 1px solid #444;
+    background: transparent;
+    color: var(--texto);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .cat-btn:hover, .cat-btn.active {
+    background: var(--rojo);
+    border-color: var(--rojo);
+    color: #fff;
+  }
+
+  /* Grid de piezas */
+  .piezas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .pieza-card {
+    background: var(--gris);
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .pieza-card:hover {
+    border-color: var(--rojo);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(232,0,13,0.2);
+  }
+
+  .pieza-img {
+    width: 100%;
+    height: 160px;
+    background: var(--gris-medio);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .pieza-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(28,28,30,0.8));
+  }
+
+  .pieza-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--rojo);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    z-index: 2;
+  }
+
+  .pieza-info {
+    padding: 1rem;
+  }
+  .pieza-marca {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gris-claro);
+    margin-bottom: 4px;
+  }
+  .pieza-nombre {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .pieza-precio {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--amarillo);
+    letter-spacing: 1px;
+  }
+  .pieza-precio span {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.75rem;
+    color: var(--gris-claro);
+    font-weight: 500;
+  }
+
+  .pieza-btns {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+  }
+  .pieza-btn-wa {
+    flex: 1;
+    padding: 8px;
+    background: #25d366;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .pieza-btn-wa:hover { background: #1da851; }
+  .pieza-btn-ml {
+    flex: 1;
+    padding: 8px;
+    background: #ffe600;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .pieza-btn-ml:hover { opacity: 0.85; }
+
+  /* ─── SECCIÓN NOSOTROS ─── */
+  .nosotros-wrap {
+    background: var(--gris);
+    padding: 5rem 2rem;
+    border-top: 1px solid #222;
+  }
+  .nosotros-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  @media(max-width:760px) { .nosotros-inner { grid-template-columns: 1fr; } }
+
+  .nosotros-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .stat-card {
+    background: var(--negro);
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--rojo);
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--gris-claro);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  .nosotros-text p {
+    color: var(--texto);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .garantia-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(232,0,13,0.12);
+    border: 1px solid rgba(232,0,13,0.3);
+    color: #ff4d56;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  /* ─── CÓMO COMPRAR ─── */
+  .como-wrap { padding: 5rem 2rem; }
+  .como-inner { max-width: 1100px; margin: 0 auto; }
+  .como-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  @media(max-width:760px) { .como-grid { grid-template-columns: 1fr; } }
+
+  .como-card {
+    border-radius: 10px;
+    padding: 2rem;
+    border: 1px solid #2a2a2a;
+    position: relative;
+    overflow: hidden;
+  }
+  .como-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .como-card.ml::before { background: #ffe600; }
+  .como-card.fb::before { background: #1877f2; }
+  .como-card.wa::before { background: #25d366; }
+
+  .como-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .como-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+  .como-card p {
+    font-size: 0.88rem;
+    color: var(--texto);
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+  }
+  .como-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+  }
+  .como-btn:hover { opacity: 0.85; }
+  .como-btn.ml { background: #ffe600; color: #333; }
+  .como-btn.fb { background: #1877f2; color: #fff; }
+  .como-btn.wa { background: #25d366; color: #fff; }
+
+  /* ─── MARCAS ─── */
+  .marcas-wrap {
+    background: var(--gris);
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    padding: 2.5rem 2rem;
+  }
+  .marcas-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .marcas-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gris-claro);
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .marcas-logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .marca-tag {
+    background: var(--gris-medio);
+    border: 1px solid #333;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--texto);
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .marca-tag:hover { border-color: var(--rojo); color: var(--blanco); }
+
+  /* ─── CONTACTO ─── */
+  .contacto-wrap { padding: 5rem 2rem; }
+  .contacto-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  @media(max-width:640px) { .contacto-inner { grid-template-columns: 1fr; } }
+
+  .contacto-info h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+  }
+  .contacto-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 1.2rem;
+  }
+  .contacto-item-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(232,0,13,0.15);
+    border: 1px solid rgba(232,0,13,0.3);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+  .contacto-item-text { font-size: 0.9rem; color: var(--texto); line-height: 1.5; }
+  .contacto-item-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gris-claro); margin-bottom: 2px; }
+
+  .contacto-form {
+    background: var(--gris);
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 2rem;
+  }
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gris-claro);
+    margin-bottom: 6px;
+  }
+  .form-group input, .form-group textarea {
+    width: 100%;
+    background: var(--gris-medio);
+    color: var(--blanco);
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--rojo); }
+  .form-group textarea { min-height: 100px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #050505;
+    border-top: 2px solid var(--rojo);
+    padding: 2.5rem 2rem 1.5rem;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+  .footer-logo span { color: var(--rojo); }
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--gris-claro);
+    text-align: center;
+  }
+  .footer-socials {
+    display: flex;
+    gap: 0.8rem;
+  }
+  .social-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: var(--gris);
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--texto);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.2s;
+  }
+  .social-btn:hover { border-color: var(--rojo); color: var(--blanco); }
+
+  /* ─── WhatsApp flotante ─── */
+  .wa-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 200;
+    width: 58px;
+    height: 58px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+    text-decoration: none;
+    animation: pulse-wa 2s infinite;
+    cursor: pointer;
+  }
+  @keyframes pulse-wa {
+    0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.45); }
+    50% { box-shadow: 0 4px 32px rgba(37,211,102,0.7); }
+  }
+
+  /* ─── TABS NAVIGATION ─── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ─── RESEÑAS ─── */
+  .resenas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
+    margin-top: 2.5rem;
+  }
+  .resena-card {
+    background: var(--gris);
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .resena-estrellas { color: var(--amarillo); font-size: 0.9rem; margin-bottom: 0.7rem; }
+  .resena-texto { font-size: 0.9rem; color: var(--texto); line-height: 1.6; margin-bottom: 1rem; font-style: italic; }
+  .resena-autor { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px; color: var(--gris-claro); }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">REFAC<span>MAX</span></div>
+  <ul class="nav-links">
+    <li><a href="#" class="active" onclick="showPage('catalogo',this)">Catálogo</a></li>
+    <li><a href="#" onclick="showPage('nosotros',this)">Nosotros</a></li>
+    <li><a href="#" onclick="showPage('como',this)">Cómo Comprar</a></li>
+    <li><a href="#" onclick="showPage('contacto',this)">Contacto</a></li>
+    <li><a href="#" class="nav-wa" onclick="showPage('contacto',this)">💬 WhatsApp</a></li>
+  </ul>
+</nav>
+
+<!-- ════════ PÁGINA: CATÁLOGO ════════ -->
+<div id="pg-catalogo" class="page active">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg-text">AUTO</div>
+    <div class="hero-content">
+      <div class="hero-badge">✓ Piezas 100% Originales</div>
+      <h1>Tu auto merece<br>lo <em>mejor</em></h1>
+      <p>Refacciones originales para todas las marcas. Envíos a todo el país. Compra fácil por WhatsApp, Mercado Libre o Facebook Marketplace.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary" onclick="document.getElementById('catalogo-sec').scrollIntoView({behavior:'smooth'})">🔍 Ver Catálogo</a>
+        <a href="#" class="btn-outline">💬 Cotizar por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Canales de venta -->
+  <div class="canales">
+    <div class="canales-inner">
+      <div class="canal-item">
+        <div class="canal-icon ml">🛒</div>
+        Disponible en Mercado Libre
+      </div>
+      <div class="canal-item">
+        <div class="canal-icon fb">f</div>
+        Facebook Marketplace
+      </div>
+      <div class="canal-item">
+        <div class="canal-icon wa">💬</div>
+        Pedidos por WhatsApp
+      </div>
+      <div class="canal-item">
+        🚚 Envíos a todo México
+      </div>
+    </div>
+  </div>
+
+  <!-- Catálogo -->
+  <section id="catalogo-sec" class="seccion">
+    <div class="sec-label">Catálogo</div>
+    <h2 class="sec-title">Encuentra tu Pieza</h2>
+
+    <div class="buscador">
+      <div class="campo">
+        <label>Marca</label>
+        <select>
+          <option>Todas las marcas</option>
+          <option>Toyota</option>
+          <option>Nissan</option>
+          <option>Chevrolet</option>
+          <option>Ford</option>
+          <option>Honda</option>
+          <option>Volkswagen</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label>Modelo</label>
+        <select>
+          <option>Todos los modelos</option>
+          <option>Corolla</option>
+          <option>Tsuru</option>
+          <option>Aveo</option>
+          <option>Focus</option>
+          <option>Civic</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label>Año</label>
+        <select>
+          <option>Todos</option>
+          <option>2024</option><option>2023</option><option>2022</option>
+          <option>2021</option><option>2020</option><option>2019</option>
+          <option>2018</option><option>2017</option><option>2016</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label>Pieza o código</label>
+        <input type="text" placeholder="Ej. filtro de aceite...">
+      </div>
+      <div class="campo">
+        <button class="btn-buscar">🔍 Buscar</button>
+      </div>
+    </div>
+
+    <div class="categorias">
+      <button class="cat-btn active">Todos</button>
+      <button class="cat-btn">Motor</button>
+      <button class="cat-btn">Frenos</button>
+      <button class="cat-btn">Suspensión</button>
+      <button class="cat-btn">Transmisión</button>
+      <button class="cat-btn">Eléctrico</button>
+      <button class="cat-btn">Carrocería</button>
+      <button class="cat-btn">Filtros</button>
+      <button class="cat-btn">Escape</button>
+    </div>
+
+    <div class="piezas-grid">
+      <!-- Pieza 1 -->
+      <div class="pieza-card">
+        <div class="pieza-img">🔧
+          <div class="pieza-badge">Original</div>
+        </div>
+        <div class="pieza-info">
+          <div class="pieza-marca">Toyota · Corolla 2018–2023</div>
+          <div class="pieza-nombre">Pastillas de Freno Delanteras</div>
+          <div class="pieza-precio">$850 <span>MXN · IVA incluido</span></div>
+          <div class="pieza-btns">
+            <button class="pieza-btn-wa">💬 WhatsApp</button>
+            <button class="pieza-btn-ml">🛒 Mercado Libre</button>
+          </div>
+        </div>
+      </div>
+      <!-- Pieza 2 -->
+      <div class="pieza-card">
+        <div class="pieza-img">⚙️
+          <div class="pieza-badge">Oferta</div>
+        </div>
+        <div class="pieza-info">
+          <div class="pieza-marca">Nissan · Tsuru / Sentra</div>
+          <div class="pieza-nombre">Filtro de Aceite Original</div>
+          <div class="pieza-precio">$180 <span>MXN · IVA incluido</span></div>
+          <div class="pieza-btns">
+            <button class="pieza-btn-wa">💬 WhatsApp</button>
+            <button class="pieza-btn-ml">🛒 Mercado Libre</button>
+          </div>
+        </div>
+      </div>
+      <!-- Pieza 3 -->
+      <div class="pieza-card">
+        <div class="pieza-img">🔩
+          <div class="pieza-badge">Original</div>
+        </div>
+        <div class="pieza-info">
+          <div class="pieza-marca">Chevrolet · Aveo 2015–2021</div>
+          <div class="pieza-nombre">Amortiguador Delantero</div>
+          <div class="pieza-precio">$1,250 <span>MXN · IVA incluido</span></div>
+          <div class="pieza-btns">
+            <button class="pieza-btn-wa">💬 WhatsApp</button>
+            <button class="pieza-btn-ml">🛒 Mercado Libre</button>
+          </div>
+        </div>
+      </div>
+      <!-- Pieza 4 -->
+      <div class="pieza-card">
+        <div class="pieza-img">💡
+          <div class="pieza-badge">Original</div>
+        </div>
+        <div class="pieza-info">
+          <div class="pieza-marca">Honda · Civic 2016–2022</div>
+          <div class="pieza-nombre">Faro Delantero LED</div>
+          <div class="pieza-precio">$3,400 <span>MXN · IVA incluido</span></div>
+          <div class="pieza-btns">
+            <button class="pieza-btn-wa">💬 WhatsApp</button>
+            <button class="pieza-btn-ml">🛒 Mercado Libre</button>
+          </div>
+        </div>
+      </div>
+      <!-- Pieza 5 -->
+      <div class="pieza-card">
+        <div class="pieza-img">🌀
+          <div class="pieza-badge">Original</div>
+        </div>
+        <div class="pieza-info">
+          <div class="pieza-marca">Ford · Focus / Fiesta</div>
+          <div class="pieza-nombre">Banda de Distribución Kit</div>
+          <div class="pieza-precio">$2,100 <span>MXN · IVA incluido</span></div>
+          <div class="pieza-btns">
+            <button class="pieza-btn-wa">💬 WhatsApp</button>
+            <button class="pieza-btn-ml">🛒 Mercado Libre</button>
+          </div>
+        </div>
+      </div>
+      <!-- Pieza 6 -->
+      <div class="pieza-card">
+        <div class="pieza-img">🔋
+          <div class="pieza-badge">Oferta</div>
+        </div>
+        <div class="pieza-info">
+          <div class="pieza-marca">VW · Jetta / Passat</div>
+          <div class="pieza-nombre">Batería 60 Ah Bosch</div>
+          <div class="pieza-precio">$1,890 <span>MXN · IVA incluido</span></div>
+          <div class="pieza-btns">
+            <button class="pieza-btn-wa">💬 WhatsApp</button>
+            <button class="pieza-btn-ml">🛒 Mercado Libre</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reseñas -->
+  <section style="padding: 4rem 2rem; background: var(--gris); border-top: 1px solid #222;">
+    <div style="max-width:1100px; margin:0 auto">
+      <div class="sec-label">Opiniones</div>
+      <h2 class="sec-title">Lo que dicen nuestros clientes</h2>
+      <div class="resenas-grid">
+        <div class="resena-card">
+          <div class="resena-estrellas">★★★★★</div>
+          <div class="resena-texto">"Recibí mi pieza en 2 días, 100% original y con número de parte. Excelente vendedor, muy recomendado."</div>
+          <div class="resena-autor">— Carlos M., Guadalajara · Mercado Libre</div>
+        </div>
+        <div class="resena-card">
+          <div class="resena-estrellas">★★★★★</div>
+          <div class="resena-texto">"Me atendieron por WhatsApp, me ayudaron a identificar la pieza exacta para mi Tsuru. Llegó bien empacada."</div>
+          <div class="resena-autor">— María L., CDMX · WhatsApp</div>
+        </div>
+        <div class="resena-card">
+          <div class="resena-estrellas">★★★★☆</div>
+          <div class="resena-texto">"Buena comunicación y precio justo. La refacción encajó a la perfección, igual que la original de agencia."</div>
+          <div class="resena-autor">— Roberto S., Monterrey · Facebook</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /pg-catalogo -->
+
+
+<!-- ════════ PÁGINA: NOSOTROS ════════ -->
+<div id="pg-nosotros" class="page">
+  <div style="margin-top:64px; padding: 5rem 2rem; max-width:1100px; margin-left:auto; margin-right:auto;">
+    <div class="sec-label">Quiénes Somos</div>
+    <h2 class="sec-title">Más de 15 años<br>en el mercado automotriz</h2>
+  </div>
+
+  <div class="nosotros-wrap">
+    <div class="nosotros-inner">
+      <div class="nosotros-text">
+        <p>Somos una refaccionaria especializada en piezas originales para autos nacionales e importados. Desde 2009 llevamos tranquilidad a miles de conductores que buscan calidad garantizada al mejor precio.</p>
+        <p>Trabajamos directamente con distribuidores autorizados, lo que nos permite ofrecer precios competitivos sin sacrificar la autenticidad de cada pieza.</p>
+        <p>Vendemos a través de tres canales para que compres como más te convenga: Mercado Libre, Facebook Marketplace y WhatsApp.</p>
+        <div class="garantia-chips">
+          <span class="chip">✅ Piezas 100% Originales</span>
+          <span class="chip">🚚 Envío Express</span>
+          <span class="chip">🔒 Compra Segura</span>
+          <span class="chip">🔄 Devoluciones en 30 días</span>
+          <span class="chip">📞 Soporte por WhatsApp</span>
+        </div>
+      </div>
+      <div class="nosotros-stats">
+        <div class="stat-card">
+          <div class="stat-num">+15</div>
+          <div class="stat-label">Años de experiencia</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">+8K</div>
+          <div class="stat-label">Clientes satisfechos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">+500</div>
+          <div class="stat-label">Piezas en catálogo</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">4.9★</div>
+          <div class="stat-label">Calificación promedio</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Marcas -->
+  <div class="marcas-wrap">
+    <div class="marcas-inner">
+      <div class="marcas-title">Marcas que manejamos</div>
+      <div class="marcas-logos">
+        <div class="marca-tag">Toyota</div>
+        <div class="marca-tag">Nissan</div>
+        <div class="marca-tag">Chevrolet</div>
+        <div class="marca-tag">Ford</div>
+        <div class="marca-tag">Honda</div>
+        <div class="marca-tag">VW</div>
+        <div class="marca-tag">Mazda</div>
+        <div class="marca-tag">Hyundai</div>
+        <div class="marca-tag">Kia</div>
+        <div class="marca-tag">Dodge</div>
+        <div class="marca-tag">Jeep</div>
+        <div class="marca-tag">BMW</div>
+      </div>
+    </div>
+  </div>
+</div><!-- /pg-nosotros -->
+
+
+<!-- ════════ PÁGINA: CÓMO COMPRAR ════════ -->
+<div id="pg-como" class="page">
+  <div class="como-wrap" style="margin-top:64px;">
+    <div class="como-inner">
+      <div class="sec-label">Guía de Compra</div>
+      <h2 class="sec-title">3 formas fáciles de comprar</h2>
+      <p style="color:var(--texto); max-width:560px; line-height:1.6;">Elige el canal que más te convenga. En todos ofrecemos el mismo catálogo, los mismos precios y el mismo servicio de calidad.</p>
+
+      <div class="como-grid">
+        <div class="como-card ml">
+          <span class="como-icon">🛒</span>
+          <h3>Mercado Libre</h3>
+          <p>Compra con toda la protección de Mercado Libre. Pago seguro, seguimiento de envío y garantía de devolución. Nuestra tienda tiene calificación de 5 estrellas.</p>
+          <a href="#" class="como-btn ml">Ir a mi tienda ML</a>
+        </div>
+        <div class="como-card fb">
+          <span class="como-icon">📘</span>
+          <h3>Facebook Marketplace</h3>
+          <p>Encuentra nuestras publicaciones en Marketplace. Ideal si ya usas Facebook; puedes ver fotos detalladas, preguntar en los comentarios y coordinar el envío.</p>
+          <a href="#" class="como-btn fb">Ver en Marketplace</a>
+        </div>
+        <div class="como-card wa">
+          <span class="como-icon">💬</span>
+          <h3>WhatsApp Directo</h3>
+          <p>El canal más rápido. Escríbenos con la marca, modelo y año de tu auto. Te cotizamos al instante y coordinamos el pago y envío sin complicaciones.</p>
+          <a href="#" class="como-btn wa">Escribir ahora</a>
+        </div>
+      </div>
+
+      <!-- Pasos -->
+      <div style="margin-top:4rem;">
+        <div class="sec-label">Proceso</div>
+        <h3 style="font-family:'Bebas Neue',sans-serif; font-size:2rem; letter-spacing:1px; margin-bottom:2rem;">¿Cómo funciona el envío?</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.5rem;">
+          <div style="background:var(--gris); border:1px solid #2a2a2a; border-radius:8px; padding:1.5rem; position:relative;">
+            <div style="font-family:'Bebas Neue',sans-serif; font-size:3rem; color:rgba(232,0,13,0.2); position:absolute; top:0.5rem; right:1rem;">01</div>
+            <div style="font-size:1.5rem; margin-bottom:0.8rem;">🔍</div>
+            <strong>Encuentra tu pieza</strong>
+            <p style="font-size:0.85rem; color:var(--texto); margin-top:0.5rem; line-height:1.5;">Busca por marca, modelo o nombre de la pieza en nuestro catálogo.</p>
+          </div>
+          <div style="background:var(--gris); border:1px solid #2a2a2a; border-radius:8px; padding:1.5rem; position:relative;">
+            <div style="font-family:'Bebas Neue',sans-serif; font-size:3rem; color:rgba(232,0,13,0.2); position:absolute; top:0.5rem; right:1rem;">02</div>
+            <div style="font-size:1.5rem; margin-bottom:0.8rem;">💳</div>
+            <strong>Realiza tu pago</strong>
+            <p style="font-size:0.85rem; color:var(--texto); margin-top:0.5rem; line-height:1.5;">Transferencia, tarjeta en ML, o pago por WhatsApp. 100% seguro.</p>
+          </div>
+          <div style="background:var(--gris); border:1px solid #2a2a2a; border-radius:8px; padding:1.5rem; position:relative;">
+            <div style="font-family:'Bebas Neue',sans-serif; font-size:3rem; color:rgba(232,0,13,0.2); position:absolute; top:0.5rem; right:1rem;">03</div>
+            <div style="font-size:1.5rem; margin-bottom:0.8rem;">📦</div>
+            <strong>Enviamos tu pedido</strong>
+            <p style="font-size:0.85rem; color:var(--texto); margin-top:0.5rem; line-height:1.5;">Empacamos con cuidado y enviamos en 24–48 hrs. Rastreo incluido.</p>
+          </div>
+          <div style="background:var(--gris); border:1px solid #2a2a2a; border-radius:8px; padding:1.5rem; position:relative;">
+            <div style="font-family:'Bebas Neue',sans-serif; font-size:3rem; color:rgba(232,0,13,0.2); position:absolute; top:0.5rem; right:1rem;">04</div>
+            <div style="font-size:1.5rem; margin-bottom:0.8rem;">✅</div>
+            <strong>Recibe y verifica</strong>
+            <p style="font-size:0.85rem; color:var(--texto); margin-top:0.5rem; line-height:1.5;">Recibe tu pieza original. Si hay cualquier problema, lo resolvemos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /pg-como -->
+
+
+<!-- ════════ PÁGINA: CONTACTO ════════ -->
+<div id="pg-contacto" class="page">
+  <div class="contacto-wrap" style="margin-top:64px;">
+    <div style="max-width:900px; margin:0 auto; margin-bottom:2rem;">
+      <div class="sec-label">Contáctanos</div>
+      <h2 class="sec-title">Estamos para ayudarte</h2>
+    </div>
+    <div class="contacto-inner">
+      <div class="contacto-info">
+        <h3>Información de contacto</h3>
+        <div class="contacto-item">
+          <div class="contacto-item-icon">💬</div>
+          <div>
+            <div class="contacto-item-label">WhatsApp</div>
+            <div class="contacto-item-text">+52 55 1234 5678<br><small style="color:var(--gris-claro);">Lun–Sáb · 9am–7pm</small></div>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <div class="contacto-item-icon">📧</div>
+          <div>
+            <div class="contacto-item-label">Correo</div>
+            <div class="contacto-item-text">ventas@refacmax.com</div>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <div class="contacto-item-icon">📍</div>
+          <div>
+            <div class="contacto-item-label">Dirección</div>
+            <div class="contacto-item-text">Av. Insurgentes Sur 1234<br>Col. Del Valle, CDMX</div>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <div class="contacto-item-icon">🕘</div>
+          <div>
+            <div class="contacto-item-label">Horario</div>
+            <div class="contacto-item-text">Lunes a Viernes: 9am – 7pm<br>Sábado: 10am – 4pm</div>
+          </div>
+        </div>
+        <div style="margin-top:1.5rem;">
+          <a href="#" class="btn-primary" style="display:inline-flex; text-decoration:none;">💬 Abrir WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="contacto-form">
+        <h3 style="font-family:'Barlow Condensed',sans-serif; font-size:1.3rem; font-weight:700; margin-bottom:1.5rem; letter-spacing:0.5px;">Envíanos un mensaje</h3>
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" placeholder="Tu nombre completo">
+        </div>
+        <div class="form-group">
+          <label>Teléfono / Email</label>
+          <input type="text" placeholder="Para contactarte">
+        </div>
+        <div class="form-group">
+          <label>Auto (Marca · Modelo · Año)</label>
+          <input type="text" placeholder="Ej. Toyota Corolla 2020">
+        </div>
+        <div class="form-group">
+          <label>¿Qué pieza necesitas?</label>
+          <textarea placeholder="Describe la pieza o el problema de tu auto..."></textarea>
+        </div>
+        <button class="btn-buscar" style="margin-top:0.5rem;">Enviar mensaje</button>
+      </div>
+    </div>
+  </div>
+</div><!-- /pg-contacto -->
+
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">REFAC<span>MAX</span></div>
+    <div class="footer-copy">© 2025 RefacMax · Piezas originales para tu auto<br>Hecho con ❤️ para mantener tu auto en marcha</div>
+    <div class="footer-socials">
+      <a href="#" class="social-btn">f</a>
+      <a href="#" class="social-btn">📷</a>
+      <a href="#" class="social-btn">🛒</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Flotante -->
+<a class="wa-float" href="#">💬</a>
+
+<script>
+  function showPage(name, link) {
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    // Show target
+    document.getElementById('pg-' + name).classList.add('active');
+    // Update nav
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    if (link) link.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Category filter
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
